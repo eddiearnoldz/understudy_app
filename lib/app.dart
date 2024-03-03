@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:understudy_app/app_view.dart';
+import 'package:understudy_app/blocs/authentication_bloc/authentication_bloc.dart';
 import 'package:user_repository/user_repository.dart';
 
 class MyApp extends StatelessWidget {

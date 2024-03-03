@@ -27,9 +27,9 @@ flutter:
   fonts:
     - family: Courier Font
       fonts:
-        - asset: fonts/CourierPrime-Bold.ttf
-        - asset: fonts/CourierPrime-BoldItalic.ttf
-        - asset: fonts/CourierPrime-Regular.ttf
-        - asset: fonts/CourierPrime-Italic.ttf
+        - asset: assets/fonts/CourierPrime-Bold.ttf
+        - asset: assets/fonts/CourierPrime-BoldItalic.ttf
+        - asset: assets/fonts/CourierPrime-Regular.ttf
+        - asset: assets/fonts/CourierPrime-Italic.ttf
 
       

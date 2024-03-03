@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "267381438181",
+    "project_id": "understudy-a59b9",
+    "storage_bucket": "understudy-a59b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267381438181:android:b97f61c1ec0a9ea6bcc60c",
+        "android_client_info": {
+          "package_name": "com.sillymitt.understudyApp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCINSVRAkinYGFAcfoyDCPZHR3pPGyEocM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
