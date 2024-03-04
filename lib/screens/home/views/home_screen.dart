@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:understudy_app/components/my_text_button.dart';
 import 'package:understudy_app/screens/auth/blocs/sing_in_bloc/sign_in_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -12,21 +13,24 @@ class HomeScreen extends StatelessWidget {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
+          Text(
             "TEST - YOU'RE IN",
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.red),
           ),
-          TextButton(
+          const SizedBox(
+            height: 20,
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.9,
+            child: MyTextButton(
+              buttonText: 'Sign Out',
               onPressed: () {
                 context.read<SignInBloc>().add(SignOutRequired());
               },
-              child: const Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  'Sign Out',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.amber, fontSize: 12),
-                ),
-              )),
+              padding: 12,
+              backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.surface),
+            ),
+          ),
         ],
       )),
     );

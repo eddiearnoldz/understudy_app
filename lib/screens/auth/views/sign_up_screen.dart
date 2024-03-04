@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:understudy_app/components/my_text_button.dart';
+import 'package:understudy_app/components/my_text_field.dart';
 import 'package:understudy_app/screens/auth/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:user_repository/user_repository.dart';
 
@@ -47,7 +49,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.9,
-                child: TextFormField(
+                child: MyTextField(
+                  controller: emailController,
+                  hintText: 'email',
+                  obscureText: false,
+                  keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'Please fill in the email field';
@@ -58,10 +64,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     }
                     return null;
                   },
-                  controller: emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  obscureText: false,
-                  decoration: const InputDecoration(hintText: 'email'),
                 ),
               ),
               const SizedBox(
@@ -69,34 +71,33 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.9,
-                child: TextFormField(
+                child: MyTextField(
+                  controller: passwordController,
+                  hintText: 'password',
+                  obscureText: obscurePassword,
+                  keyboardType: TextInputType.visiblePassword,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'Please fill in the password field';
                     } else if (!RegExp(
-                      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d|\W).{8,}$',
+                      r'^(?=.*[a-z])(?=.*[A-Z]).{8,}$',
                     ).hasMatch(value)) {
-                      return 'Please enter a valid password';
+                      return 'Lower and uppercase letters, and be at least 8 characters long';
                     }
                     return null;
                   },
-                  controller: passwordController,
-                  keyboardType: TextInputType.visiblePassword,
-                  obscureText: obscurePassword,
-                  decoration: InputDecoration(
-                      hintText: 'password',
-                      suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              obscurePassword = !obscurePassword;
-                              if (obscurePassword) {
-                                iconPassword = CupertinoIcons.eye_fill;
-                              } else {
-                                iconPassword = CupertinoIcons.eye_fill;
-                              }
-                            });
-                          },
-                          icon: Icon(iconPassword))),
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          obscurePassword = !obscurePassword;
+                          if (obscurePassword) {
+                            iconPassword = CupertinoIcons.eye_fill;
+                          } else {
+                            iconPassword = CupertinoIcons.eye_slash;
+                          }
+                        });
+                      },
+                      icon: Icon(iconPassword)),
                 ),
               ),
               const SizedBox(
@@ -104,64 +105,58 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.9,
-                child: TextFormField(
+                child: MyTextField(
+                  controller: nameController,
+                  hintText: 'name',
+                  obscureText: false,
+                  keyboardType: TextInputType.name,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'Please fill in the name field';
                     }
                     return null;
                   },
-                  controller: nameController,
-                  keyboardType: TextInputType.name,
-                  obscureText: false,
-                  decoration: const InputDecoration(hintText: 'name'),
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: TextFormField(
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please fill in the location field';
-                    }
-                    return null;
-                  },
-                  controller: locationController,
-                  keyboardType: TextInputType.none,
-                  obscureText: false,
-                  decoration: const InputDecoration(hintText: 'city'),
-                ),
-              ),
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: MyTextField(
+                    controller: locationController,
+                    hintText: 'city',
+                    obscureText: false,
+                    keyboardType: TextInputType.none,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please fill in the location field';
+                      }
+                      return null;
+                    },
+                  )),
               const SizedBox(
                 height: 20,
               ),
               !signUpRequired
                   ? SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      child: TextButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              MyUser myUser = MyUser.empty;
-                              myUser.email = emailController.text;
-                              myUser.name = nameController.text;
-                              myUser.location = locationController.text;
-                              setState(() {
-                                context.read<SignUpBloc>().add(SignUpRequired(myUser, passwordController.text));
-                              });
-                            }
-                          },
-                          child: const Padding(
-                            padding: EdgeInsets.all(10),
-                            child: Text(
-                              'Sign In',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.amber, fontSize: 12),
-                            ),
-                          )),
-                    )
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      child: MyTextButton(
+                        buttonText: 'Sign Up',
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            MyUser myUser = MyUser.empty;
+                            myUser.email = emailController.text;
+                            myUser.name = nameController.text;
+                            myUser.location = locationController.text;
+                            setState(() {
+                              context.read<SignUpBloc>().add(SignUpRequired(myUser, passwordController.text));
+                            });
+                          }
+                        },
+                        padding: 12,
+                        backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.surface),
+                      ))
                   : const CircularProgressIndicator()
             ],
           )),

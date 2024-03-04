@@ -1,14 +1,20 @@
+import 'dart:io';
+
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:understudy_app/blocs/authentication_bloc/authentication_bloc.dart';
 import 'package:understudy_app/screens/auth/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:understudy_app/screens/auth/blocs/sing_in_bloc/sign_in_bloc.dart';
 import 'package:understudy_app/screens/auth/views/sign_in_screen.dart';
 import 'package:understudy_app/screens/auth/views/sign_up_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:user_repository/user_repository.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  const WelcomeScreen({super.key});
+  const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();
@@ -30,41 +36,106 @@ class _WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      body: Padding(
-        padding: const EdgeInsets.only(top: 100.0),
-        child: Center(
-          child: SingleChildScrollView(
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height,
-              child: Column(
-                children: [
-                  TabBar(controller: tabController, labelColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), tabs: const [
-                    Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Text('Sign In'),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Text('Sign Up'),
-                    )
-                  ]),
-                  Expanded(
-                      child: TabBarView(controller: tabController, children: [
-                    BlocProvider<SignInBloc>(
-                      create: (context) => SignInBloc(context.read<AuthenticationBloc>().userRepository),
-                      child: const SignInScreen(),
-                    ),
-                    BlocProvider<SignUpBloc>(
-                      create: (context) => SignUpBloc(context.read<AuthenticationBloc>().userRepository),
-                      child: const SignUpScreen(),
-                    )
-                  ]))
-                ],
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        children: [
+          // Background Image
+          Positioned.fill(
+            child: Image.asset(
+              "assets/background/welcome.png",
+              fit: BoxFit.cover,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 130.0),
+            child: Center(
+              child: SingleChildScrollView(
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height - 130,
+                  child: Column(
+                    children: [
+                      Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 40),
+                          child: SvgPicture.asset(
+                            'assets/logos/understudy_logo.svg',
+                            height: 62,
+                            width: 263,
+                          )),
+                      const SizedBox(
+                        height: 110,
+                      ),
+                      TabBar(
+                        dividerHeight: 0,
+                        controller: tabController,
+                        tabs: [
+                          Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: Text(
+                              'Sign In',
+                              style: Theme.of(context).textTheme.labelLarge,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: Text(
+                              'Sign Up',
+                              style: Theme.of(context).textTheme.labelLarge,
+                            ),
+                          )
+                        ],
+                      ),
+                      Expanded(
+                        child: TabBarView(
+                          controller: tabController,
+                          children: [
+                            BlocProvider<SignInBloc>(
+                              create: (context) => SignInBloc(context.read<AuthenticationBloc>().userRepository),
+                              child: const SignInScreen(),
+                            ),
+                            BlocProvider<SignUpBloc>(
+                              create: (context) => SignUpBloc(context.read<AuthenticationBloc>().userRepository),
+                              child: const SignUpScreen(),
+                            ),
+                          ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          String url = "https://www.burnleyfootballclub.com";
+                          try {
+                            if (Platform.isAndroid) {
+                              launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+                            } else {
+                              launchUrl(Uri.parse(url));
+                            }
+                          } catch (e) {}
+                        },
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'discover more at ',
+                                style: TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 13, fontFamily: 'Courier Font'),
+                              ),
+                              TextSpan(
+                                text: 'www.understudy-app.dev',
+                                style: TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 13, decoration: TextDecoration.underline, fontFamily: 'Courier Font'),
+                              ),
+                            ],
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

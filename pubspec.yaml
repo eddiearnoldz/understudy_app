@@ -17,6 +17,11 @@ dependencies:
 
   user_repository:
     path: packages/user_repository
+  google_fonts: ^6.2.1
+  hexcolor: ^3.0.1
+  url_launcher: ^6.2.5
+  auto_size_text: ^3.0.0
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
@@ -24,6 +29,9 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 flutter:
   uses-material-design: true
+  assets: 
+    - assets/background/
+    - assets/logos/
   fonts:
     - family: Courier Font
       fonts:

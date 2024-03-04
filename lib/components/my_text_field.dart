@@ -38,23 +38,20 @@ class MyTextField extends StatelessWidget {
       onTap: onTap,
       textInputAction: TextInputAction.next,
       onChanged: onChanged,
+      style: Theme.of(context).textTheme.labelMedium,
       decoration: InputDecoration(
-        hintText: hintText, 
-        suffixIcon: suffixIcon, 
+        hintText: hintText,
+        labelStyle: Theme.of(context).textTheme.labelMedium,
+        hintStyle: Theme.of(context).textTheme.labelMedium,
+        suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
-          borderSide: const BorderSide(color: Colors.transparent)
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
-          borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)
-        ),
-        fillColor: Colors.grey.shade100,
+        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(5), borderSide: const BorderSide(color: Colors.transparent)),
+        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(5), borderSide: BorderSide(color: Theme.of(context).colorScheme.primary)),
+        fillColor: Theme.of(context).colorScheme.surface.withOpacity(0.8),
         filled: true,
-        hintStyle: TextStyle(color: Colors.grey[500]),
-        errorText: errorMessage),
-      
+        errorText: errorMessage,
+        errorStyle: Theme.of(context).textTheme.labelSmall!.copyWith(color: Theme.of(context).colorScheme.error),
+      ),
     );
   }
 }

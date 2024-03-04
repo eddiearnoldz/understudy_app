@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:understudy_app/components/my_text_button.dart';
 import 'package:understudy_app/components/my_text_field.dart';
 import 'package:understudy_app/screens/auth/blocs/sing_in_bloc/sign_in_bloc.dart';
 
@@ -76,12 +77,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'Please fill in the password field';
-                    } else if (!RegExp(
-                      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d|\W).{8,}$',
-                    ).hasMatch(value)) {
-                      return 'Please enter a valid password';
+                    } else {
+                      return null;
                     }
-                    return null;
                   },
                   suffixIcon: IconButton(
                       onPressed: () {
@@ -90,7 +88,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           if (obscurePassword) {
                             iconPassword = CupertinoIcons.eye_fill;
                           } else {
-                            iconPassword = CupertinoIcons.eye_fill;
+                            iconPassword = CupertinoIcons.eye_slash;
                           }
                         });
                       },
@@ -102,21 +100,17 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               !signInRequired
                   ? SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      child: TextButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              context.read<SignInBloc>().add(SignInRequired(emailController.text, passwordController.text));
-                            }
-                          },
-                          child: const Padding(
-                            padding: EdgeInsets.all(10),
-                            child: Text(
-                              'Sign In',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.amber, fontSize: 12),
-                            ),
-                          )),
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      child: MyTextButton(
+                        buttonText: 'Sign In',
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            context.read<SignInBloc>().add(SignInRequired(emailController.text, passwordController.text));
+                          }
+                        },
+                        padding: 12,
+                        backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.surface),
+                      ),
                     )
                   : const CircularProgressIndicator()
             ],
