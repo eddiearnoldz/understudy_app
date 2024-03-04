@@ -10,7 +10,10 @@ class HomeScreen extends StatelessWidget {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("TEST - You're In"),
+          Text(
+            "TEST - YOU'RE IN",
+            style: TextStyle(fontFamily: 'Courier Font'),
+          ),
         ],
       )),
     );
