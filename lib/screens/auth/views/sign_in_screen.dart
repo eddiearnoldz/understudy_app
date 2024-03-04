@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:understudy_app/components/my_text_field.dart';
 import 'package:understudy_app/screens/auth/blocs/sing_in_bloc/sign_in_bloc.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -45,7 +46,11 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.9,
-                child: TextFormField(
+                child: MyTextField(
+                  controller: emailController,
+                  hintText: 'email',
+                  obscureText: false,
+                  keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'Please fill in the email field';
@@ -56,10 +61,6 @@ class _SignInScreenState extends State<SignInScreen> {
                     }
                     return null;
                   },
-                  controller: emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  obscureText: false,
-                  decoration: const InputDecoration(hintText: 'email'),
                 ),
               ),
               const SizedBox(
@@ -67,7 +68,11 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.9,
-                child: TextFormField(
+                child: MyTextField(
+                  controller: passwordController,
+                  hintText: 'password',
+                  obscureText: obscurePassword,
+                  keyboardType: TextInputType.visiblePassword,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'Please fill in the password field';
@@ -78,23 +83,18 @@ class _SignInScreenState extends State<SignInScreen> {
                     }
                     return null;
                   },
-                  controller: passwordController,
-                  keyboardType: TextInputType.visiblePassword,
-                  obscureText: obscurePassword,
-                  decoration: InputDecoration(
-                      hintText: 'password',
-                      suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              obscurePassword = !obscurePassword;
-                              if (obscurePassword) {
-                                iconPassword = CupertinoIcons.eye_fill;
-                              } else {
-                                iconPassword = CupertinoIcons.eye_fill;
-                              }
-                            });
-                          },
-                          icon: Icon(iconPassword))),
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          obscurePassword = !obscurePassword;
+                          if (obscurePassword) {
+                            iconPassword = CupertinoIcons.eye_fill;
+                          } else {
+                            iconPassword = CupertinoIcons.eye_fill;
+                          }
+                        });
+                      },
+                      icon: Icon(iconPassword)),
                 ),
               ),
               const SizedBox(
