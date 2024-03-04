@@ -12,7 +12,7 @@ class MyAppView extends StatelessWidget {
     return MaterialApp(
         title: 'The Understudy App',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(colorScheme: ColorScheme.light(surface: Colors.grey.shade100, onSurface: Colors.black, primary: Colors.red, onPrimary: Colors.yellow)),
+        theme: ThemeData(colorScheme: ColorScheme.light(surface: Colors.grey.shade100, onSurface: Colors.black, primary: Colors.red, onPrimary: Colors.yellow), fontFamily: 'Courier Font'),
         home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
           builder: ((context, state) {
             if (state.status == AuthenticationStatus.authenticated) {

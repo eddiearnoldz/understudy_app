@@ -12,7 +12,6 @@ class HomeScreen extends StatelessWidget {
         children: [
           Text(
             "TEST - YOU'RE IN",
-            style: TextStyle(fontFamily: 'Courier Font'),
           ),
         ],
       )),
