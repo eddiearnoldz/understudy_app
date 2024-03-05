@@ -119,7 +119,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateM
                               ),
                               TextSpan(
                                 text: 'www.understudy-app.dev',
-                                style: TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 13, decoration: TextDecoration.underline, fontFamily: 'Courier Font'),
+                                style: TextStyle(
+                                    color: Theme.of(context).colorScheme.primary, fontSize: 13, decoration: TextDecoration.underline, fontFamily: 'Courier Font', fontWeight: FontWeight.w700),
                               ),
                             ],
                           ),

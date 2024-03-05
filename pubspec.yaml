@@ -32,6 +32,7 @@ flutter:
   assets: 
     - assets/background/
     - assets/logos/
+    - assets/icons/
   fonts:
     - family: Courier Font
       fonts:
