@@ -25,6 +25,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool containsNumberOrChar = false;
   bool containsLowerCase = false;
   bool containsUpperCase = false;
+  String? _errMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +38,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
         } else if (state is SignUpProcess) {
           signUpRequired = true;
         } else if (state is SignUpFailure) {
+          setState(() {
+            _errMessage = state.errorMessage.contains('email-already-in-use') ? 'The email address is already in use by another account.' : state.errorMessage;
+            signUpRequired = false;
+          });
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                _errMessage ?? 'An error occurred during sign-up.',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.labelMedium!.copyWith(color: Theme.of(context).colorScheme.surface),
+              ),
+            ),
+          );
           return;
         }
       },

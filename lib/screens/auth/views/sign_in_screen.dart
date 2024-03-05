@@ -36,6 +36,12 @@ class _SignInScreenState extends State<SignInScreen> {
             signInRequired = false;
             _errMessage = 'Invalid email or password';
           });
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(_errMessage ?? 'An error occurred during sign-in.',
+                  textAlign: TextAlign.center, style: Theme.of(context).textTheme.labelMedium!.copyWith(color: Theme.of(context).colorScheme.surface)),
+            ),
+          );
         }
       },
       child: Form(
