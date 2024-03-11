@@ -24,8 +24,22 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>http</string>
+		<string>https</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>To capture script images and profile picture</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Understudy app needs access to your photo library for script images and profile images</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -35,32 +49,10 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-			<string>http</string>
-			<string>https</string>
-	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-			<key>NSAllowsArbitraryLoads</key>
-			<true/>
-	</dict>
-
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Understudy app needs access to your photo library for script images and profile images</string>
-
-	<key>NSCameraUsageDescription</key>
-	<string>To capture script images and profile picture</string>
-
 </dict>
 </plist>
