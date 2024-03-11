@@ -13,7 +13,7 @@ class MyAppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'The Understudy App',
+        title: 'Understudy',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             primaryColor: HexColor("#F5E127"),
