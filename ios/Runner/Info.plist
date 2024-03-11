@@ -56,5 +56,11 @@
 			<true/>
 	</dict>
 
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Understudy app needs access to your photo library for script images and profile images</string>
+
+	<key>NSCameraUsageDescription</key>
+	<string>To capture script images and profile picture</string>
+
 </dict>
 </plist>
