@@ -14,7 +14,6 @@ dependencies:
   flutter_bloc: ^8.1.4
   equatable: ^2.0.5
   firebase_core: ^2.25.5
-
   user_repository:
     path: packages/user_repository
   google_fonts: ^6.2.1

@@ -63,15 +63,15 @@ class MyAppView extends StatelessWidget {
                 fontSize: 14,
                 fontStyle: FontStyle.normal,
               ),
-              titleMedium: GoogleFonts.courierPrime(
+              titleMedium: GoogleFonts.chicle(
                 fontSize: 32,
                 fontStyle: FontStyle.normal,
               ),
-              titleLarge: GoogleFonts.courierPrime(
+              titleLarge: GoogleFonts.chicle(
                 fontSize: 40,
                 fontStyle: FontStyle.normal,
               ),
-              titleSmall: GoogleFonts.courierPrime(
+              titleSmall: GoogleFonts.chicle(
                 fontSize: 28,
                 fontStyle: FontStyle.normal,
               ),

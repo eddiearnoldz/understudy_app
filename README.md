@@ -1,16 +1,10 @@
 # understudy_app
 
-A new Flutter project.
+A mobile app to help actors learn their lines using AI generated scene partners to read along with you.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To launch the app in dev mode in VS Code in the main branch use Fn5 from the terminal or from the main vs code menu choose RUN > Start Debugging.
 
-A few resources to get you started if this is your first Flutter project:
+## Packages
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
