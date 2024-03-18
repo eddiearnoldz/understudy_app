@@ -23,6 +23,7 @@ class MyAppView extends StatelessWidget {
                 primary: HexColor("#F5E127"),
                 onPrimary: HexColor("#1F1F1F"),
                 secondary: HexColor("#FF6D3F"),
+                tertiary: HexColor("#3B3B3B"),
                 error: HexColor("#FB0606"),
                 onSecondary: HexColor("#1F1F1F")),
             fontFamily: 'Courier Font',
